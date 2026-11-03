@@ -1,0 +1,388 @@
+agent_packages:
+  agent_1:
+    metadata:
+      description: 경비지급 규정과 날씨 · 공휴일 도구로 출장 체크리스트 xlsx 파일을 만든다
+      icon: 🧸
+      icon_background: '#F5F3FF'
+      icon_type: emoji
+      name: 출장 준비 에이전트
+      role: 출장 준비 담당자
+    omitted_assets:
+    - hash: 77886713ded4cb109fbcda4d0f5e573e6acbd3b32d9972113358becb285d703d
+      kind: file
+      mime_type: application/pdf
+      name: 02_경비지급규정(2025).pdf
+      size: 66232
+    - hash: 83477530d1a8d130d30cfcfc9fcaad3f7dbe584674a38f67049ca287dc33eec1
+      kind: file
+      mime_type: application/pdf
+      name: 01_취업규칙(2024).pdf
+      size: 68741
+    schema_version: 1
+    soul:
+      app_features:
+        file_upload:
+          allowed_file_extensions:
+          - JPG
+          - JPEG
+          - PNG
+          - GIF
+          - WEBP
+          - SVG
+          allowed_file_types:
+          - document
+          - image
+          - audio
+          - video
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          enabled: true
+          image:
+            enabled: true
+          number_limits: 3
+        opening_statement: null
+        retriever_resource: null
+        sensitive_word_avoidance: null
+        speech_to_text: null
+        suggested_questions: null
+        suggested_questions_after_answer: null
+        text_to_speech: null
+      app_variables: []
+      config_files:
+      - file_id: ''
+        file_kind: upload_file
+        hash: 77886713ded4cb109fbcda4d0f5e573e6acbd3b32d9972113358becb285d703d
+        is_missing: true
+        mime_type: application/pdf
+        name: 02_경비지급규정(2025).pdf
+        size: 66232
+      - file_id: ''
+        file_kind: upload_file
+        hash: 83477530d1a8d130d30cfcfc9fcaad3f7dbe584674a38f67049ca287dc33eec1
+        is_missing: true
+        mime_type: application/pdf
+        name: 01_취업규칙(2024).pdf
+        size: 68741
+      config_note: '출장 체크리스트를 만들 때 체크리스트에 `항공권` 항목을 반드시 포함한다.
+
+        - 형식: 항목 · 준비 여부 · 근거
+
+        - 준비 여부: 항상 `미완료`
+
+        - 근거: 관련 규정 조항이 있으면 그 조항 번호/내용을 적고, 규정에 없으면 사용자 요청 기준으로 적는다.
+
+        '
+      config_skills: []
+      env:
+        secret_refs: []
+        variables: []
+      human:
+        contacts: []
+        tools: []
+      knowledge:
+        sets: []
+      memory:
+        artifacts: []
+        budget: null
+        scope: null
+      misc_legacy:
+        file_upload:
+          allowed_file_extensions:
+          - JPG
+          - JPEG
+          - PNG
+          - GIF
+          - WEBP
+          - SVG
+          allowed_file_types:
+          - document
+          - image
+          - audio
+          - video
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          enabled: true
+          image:
+            enabled: true
+          number_limits: 3
+        opening_statement: null
+        retriever_resource: null
+        sensitive_word_avoidance: null
+        speech_to_text: null
+        suggested_questions: null
+        suggested_questions_after_answer: null
+        text_to_speech: null
+      model:
+        credential_ref: null
+        model: gpt-5.4
+        model_provider: langgenius/openai/openai
+        model_settings:
+          frequency_penalty: null
+          max_tokens: null
+          presence_penalty: null
+          response_format: null
+          stop: null
+          temperature: null
+          top_p: null
+        plugin_id: langgenius/openai
+      prompt:
+        system_prompt: '너는 회사 직원의 출장 준비를 돕는 담당자다.
+
+          출장 체크리스트 요청을 받으면 다음 순서로 일한다.
+
+          1. 첨부한 파일을 읽고 출장과 관련된 조항(사전 승인 · 교통비 · 숙박비 한도 · 식비 한도 · 신청 기한)을 뽑는다.
+
+          2. 날씨 도구로 출장지의 내일 날씨와 우산 필요 여부를 확인한다. 도시 이름은 영문(예: Busan)으로 넣는다.
+
+          3. 공휴일 도구로 다음 공휴일을 확인하고 출장 기간과 겹치는지 적는다.
+
+          4. 항목 · 준비 여부 · 근거 세 열로 체크리스트를 만든다. 근거 열에는 규정 조항 번호나 도구 결과를 적는다. 준비 여부 열은
+          모두 「미완료」로 둔다.
+
+          5. 체크리스트를 xlsx 파일로 만들어 전달한다. 파일 이름은 출장_체크리스트.xlsx 로 한다.
+
+          규정과 도구 결과에 없는 내용은 지어내지 않는다. 답은 한국어로 한다.'
+      sandbox:
+        config:
+          cpu: null
+          env: []
+          image: null
+          working_dir: null
+        provider: null
+      schema_version: 1
+      tools:
+        cli_tools: []
+        dify_tools:
+        - credential_ref: null
+          credential_type: unauthorized
+          description: null
+          enabled: true
+          name: null
+          plugin_id: null
+          provider: 내일 날씨 알리미
+          provider_id: 9ea38111-6ca7-4a21-88fa-1558a6a72d4c
+          provider_type: workflow
+          runtime_parameters: {}
+          tool_name: tomorrow_weather
+        - credential_ref: null
+          credential_type: unauthorized
+          description: null
+          enabled: true
+          name: null
+          plugin_id: null
+          provider: 공휴일 조회
+          provider_id: 47e345c5-5951-45ee-9392-fcbedfeaacd4
+          provider_type: api
+          runtime_parameters: {}
+          tool_name: getPublicHolidays
+        - credential_ref: null
+          credential_type: unauthorized
+          description: null
+          enabled: true
+          name: null
+          plugin_id: null
+          provider: 공휴일 조회
+          provider_id: 47e345c5-5951-45ee-9392-fcbedfeaacd4
+          provider_type: api
+          runtime_parameters: {}
+          tool_name: getNextPublicHolidays
+    workspace_skills: []
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 출장 체크리스트 워크플로우
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: agent
+      id: 1792039959892-source-1792040051393-target
+      source: '1792039959892'
+      sourceHandle: source
+      target: '1792040051393'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: agent
+        targetType: end
+      id: 1792040051393-source-1792040237394-target
+      source: '1792040051393'
+      sourceHandle: source
+      target: '1792040237394'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 시작
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: 출장 도시
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: city
+      height: 108
+      id: '1792039959892'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        agent_binding:
+          binding_type: roster_agent
+          package_ref: agent_1
+        agent_declared_outputs: []
+        agent_job:
+          declared_outputs: []
+          human_contacts: []
+          metadata:
+            agent_soul: null
+            file_refs: null
+          mode: tell_agent_what_to_do
+          previous_node_output_refs:
+          - key: null
+            name: null
+            node_id: '1792039959892'
+            output: city
+            selector:
+            - '1792039959892'
+            - city
+            value_selector: null
+            variable: null
+            variable_selector: null
+          schema_version: 1
+          workflow_prompt: 내일부터 1박 2일 {{#1792039959892.city#}} 출장이다. 출장 체크리스트를 xlsx
+            파일로 만들어줘.
+        agent_node_kind: dify_agent
+        agent_task: 내일부터 1박 2일 {{#1792039959892.city#}} 출장이다. 출장 체크리스트를 xlsx 파일로 만들어줘.
+        selected: false
+        title: Agent
+        type: agent
+        version: '2'
+      height: 117
+      id: '1792040051393'
+      position:
+        x: 382
+        y: 282
+      positionAbsolute:
+        x: 382
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1792040051393'
+          - text
+          value_type: string
+          variable: checklist
+        selected: false
+        title: 출력
+        type: end
+      height: 87
+      id: '1792040237394'
+      position:
+        x: 683
+        y: 282
+      positionAbsolute:
+        x: 683
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    viewport:
+      x: 633
+      y: 343.5
+      zoom: 1
+  rag_pipeline_variables: []

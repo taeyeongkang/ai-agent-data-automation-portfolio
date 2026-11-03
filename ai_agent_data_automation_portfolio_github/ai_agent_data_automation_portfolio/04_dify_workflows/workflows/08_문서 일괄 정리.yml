@@ -1,0 +1,651 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 문서 일괄 정리
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: iteration
+      id: 1792025522173-source-1792025643426-target
+      source: '1792025522173'
+      sourceHandle: source
+      target: '1792025643426'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        sourceType: iteration-start
+        targetType: document-extractor
+      id: 1792025643426start-source-1792025722491-target
+      source: 1792025643426start
+      sourceHandle: source
+      target: '1792025722491'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        sourceType: document-extractor
+        targetType: if-else
+      id: 1792025722491-source-1792025766316-target
+      source: '1792025722491'
+      sourceHandle: source
+      target: '1792025766316'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        sourceType: if-else
+        targetType: template-transform
+      id: 1792025766316-true-1792025883061-target
+      source: '1792025766316'
+      sourceHandle: 'true'
+      target: '1792025883061'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        sourceType: if-else
+        targetType: parameter-extractor
+      id: 1792025766316-false-1792026036575-target
+      source: '1792025766316'
+      sourceHandle: 'false'
+      target: '1792026036575'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        sourceType: parameter-extractor
+        targetType: template-transform
+      id: 1792026036575-source-1792026339444-target
+      source: '1792026036575'
+      sourceHandle: source
+      target: '1792026339444'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1792026339444-source-1792026548607-target
+      source: '1792026339444'
+      sourceHandle: source
+      target: '1792026548607'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1792025883061-source-1792026548607-target
+      source: '1792025883061'
+      sourceHandle: source
+      target: '1792026548607'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1792025643426-source-1792026779468-target
+      source: '1792025643426'
+      sourceHandle: source
+      target: '1792026779468'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: list-operator
+      id: 1792025643426-source-1792027075935-target
+      source: '1792025643426'
+      sourceHandle: source
+      target: '1792027075935'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: list-operator
+        targetType: end
+      id: 1792027075935-source-1792027259348-target
+      source: '1792027075935'
+      sourceHandle: source
+      target: '1792027259348'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1792026779468-source-1792027259348-target
+      source: '1792026779468'
+      sourceHandle: source
+      target: '1792027259348'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 시작
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          default: ''
+          hide: false
+          hint: ''
+          label: 양식 문서 여러 건
+          max_length: 5
+          options: []
+          placeholder: ''
+          required: true
+          type: file-list
+          variable: docs
+      height: 108
+      id: '1792025522173'
+      position:
+        x: 0
+        y: 88.5
+      positionAbsolute:
+        x: 0
+        y: 88.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        error_handle_mode: terminated
+        flatten_output: true
+        height: 321
+        is_parallel: false
+        iterator_input_type: array[file]
+        iterator_selector:
+        - '1792025522173'
+        - docs
+        output_selector:
+        - '1792026548607'
+        - output
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1792025643426start
+        title: 문서별 처리
+        type: iteration
+        width: 1809
+      height: 321
+      id: '1792025643426'
+      position:
+        x: 342
+        y: 0
+      positionAbsolute:
+        x: 342
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1809
+      zIndex: 0
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1792025643426start
+      parentId: '1792025643426'
+      position:
+        x: 60
+        y: 79.5
+      positionAbsolute:
+        x: 402
+        y: 79.5
+      selectable: false
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_array_file: false
+        iteration_id: '1792025643426'
+        selected: false
+        title: Doc 추출기
+        type: document-extractor
+        variable_selector:
+        - '1792025643426'
+        - item
+      height: 103
+      id: '1792025722491'
+      parentId: '1792025643426'
+      position:
+        x: 184
+        y: 60
+      positionAbsolute:
+        x: 526
+        y: 60
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: de72c16c-d7b4-461a-bb35-3cb6c904dd2c
+            value: ''
+            varType: string
+            variable_selector:
+            - '1792025722491'
+            - text
+          logical_operator: and
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        selected: false
+        title: 추출 실패
+        type: if-else
+      height: 123
+      id: '1792025766316'
+      parentId: '1792025643426'
+      position:
+        x: 505
+        y: 67.16666666666666
+      positionAbsolute:
+        x: 847
+        y: 67.16666666666666
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        selected: false
+        template: '{{ fname }},,,0,실패(텍스트 없음)'
+        title: 실패 행
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1792025643426'
+          - item
+          - name
+          value_type: file
+          variable: fname
+      height: 51
+      id: '1792025883061'
+      parentId: '1792025643426'
+      position:
+        x: 846
+        y: 79.51666666666667
+      positionAbsolute:
+        x: 1188
+        y: 79.51666666666667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        instruction: 문서에 없는 항목은 지어내지 말고 비워 둔다. 금액이 여러 개면 합계(총액) 하나만 넣는다.
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        parameters:
+        - description: 문서의 기준일(작성일·견적일·출장 시작일·신청일). YYYY-MM-DD 형식
+          name: doc_date
+          required: false
+          type: string
+        - description: '담당자·작성자·신청자 이름만(직함·부서 제외)
+
+
+            문서를 만든 우리 회사 사람의 이름만(직함·부서 제외). 「담당」「작성자」「신청자」 칸에서 찾는다. 「수신」은 받는 쪽이므로
+            답이 아니다'
+          name: owner
+          required: false
+          type: string
+        - description: 문서의 합계 금액(원). 쉼표·단위 없이 숫자만
+          name: amount
+          required: false
+          type: number
+        query:
+        - '1792025722491'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 항목 추출
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 87
+      id: '1792026036575'
+      parentId: '1792025643426'
+      position:
+        x: 846
+        y: 158.01666666666665
+      positionAbsolute:
+        x: 1188
+        y: 158.01666666666665
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        selected: false
+        template: '{{ fname }},{{ dt }},{{ who }},{{ amt }},성공'
+        title: 성공 행
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1792025643426'
+          - item
+          - name
+          value_type: file
+          variable: fname
+        - value_selector:
+          - '1792026036575'
+          - doc_date
+          value_type: string
+          variable: dt
+        - value_selector:
+          - '1792026036575'
+          - owner
+          value_type: string
+          variable: who
+        - value_selector:
+          - '1792026036575'
+          - amount
+          value_type: number
+          variable: amt
+      height: 51
+      id: '1792026339444'
+      parentId: '1792025643426'
+      position:
+        x: 1167
+        y: 190.51666666666665
+      positionAbsolute:
+        x: 1509
+        y: 190.51666666666665
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792025643426'
+        output_type: string
+        selected: false
+        title: 변수 집계자
+        type: variable-aggregator
+        variables:
+        - - '1792026339444'
+          - output
+        - - '1792025883061'
+          - output
+      height: 135
+      id: '1792026548607'
+      parentId: '1792025643426'
+      position:
+        x: 1508
+        y: 101.51666666666667
+      positionAbsolute:
+        x: 1850
+        y: 101.51666666666667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        code: "import re\n\ndef main(rows: list) -> dict:\n    # rows: 반복 노드가 모은 \"\
+          파일,기준일,담당자,금액,상태\" 문자열 배열\n    header = \"파일,기준일,담당자,금액,상태\"\n    items\
+          \ = []\n    for r in rows:\n        cols = r.strip().split(\",\")\n    \
+          \    try:\n            amt = int(float(cols[3]))\n        except (IndexError,\
+          \ ValueError):\n            amt = 0\n        # 규칙 검사: 담당자는 한글 이름 2~4자여야\
+          \ 한다\n        if cols[-1] == \"성공\" and not re.fullmatch(r\"[가-힣]{2,4}\"\
+          , cols[2]):\n            cols[-1] = \"확인 필요(담당자)\"\n        items.append((amt,\
+          \ \",\".join(cols)))\n    # 금액 큰 순서로 정렬\n    items.sort(key=lambda x: x[0],\
+          \ reverse=True)\n    ok = [a for a, r in items if r.endswith(\",성공\")]\n\
+          \    check = sum(1 for a, r in items if \"확인 필요\" in r)\n    fail = len(items)\
+          \ - len(ok) - check\n    csv = \"\\n\".join([header] + [r for a, r in items])\n\
+          \    summary = f\"총 {len(items)}건 · 성공 {len(ok)}건 · 확인 필요 {check}건 · 실패\
+          \ {fail}건 · 성공 건 금액 합계 {sum(ok):,}원\"\n    return {\n        \"csv\": csv,\n\
+          \        \"summary\": summary,\n    }"
+        code_language: python3
+        outputs:
+          csv:
+            children: null
+            type: string
+          summary:
+            children: null
+            type: string
+        selected: false
+        title: CSV 만들기
+        type: code
+        variables:
+        - value_selector:
+          - '1792025643426'
+          - output
+          value_type: array[string]
+          variable: rows
+      height: 51
+      id: '1792026779468'
+      position:
+        x: 2271
+        y: 123.70000000000002
+      positionAbsolute:
+        x: 2271
+        y: 123.70000000000002
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        extract_by:
+          enabled: false
+          serial: '1'
+        filter_by:
+          conditions:
+          - comparison_operator: contains
+            key: ''
+            value: 실패(
+          enabled: true
+        item_var_type: string
+        limit:
+          enabled: false
+          size: 10
+        order_by:
+          enabled: true
+          key: ''
+          value: asc
+        selected: false
+        title: 실패 건 골라내기
+        type: list-operator
+        var_type: array[string]
+        variable:
+        - '1792025643426'
+        - output
+      height: 91
+      id: '1792027075935'
+      position:
+        x: 2271
+        y: 254.70000000000005
+      positionAbsolute:
+        x: 2271
+        y: 254.70000000000005
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1792026779468'
+          - csv
+          value_type: string
+          variable: csv
+        - value_selector:
+          - '1792026779468'
+          - summary
+          value_type: string
+          variable: summary
+        - value_selector:
+          - '1792027075935'
+          - result
+          value_type: array[string]
+          variable: failed
+        selected: true
+        title: 출력
+        type: end
+      height: 141
+      id: '1792027259348'
+      position:
+        x: 2632
+        y: 166.03333333333336
+      positionAbsolute:
+        x: 2632
+        y: 166.03333333333336
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    viewport:
+      x: -570.395255995817
+      y: 461.9083185926594
+      zoom: 1
+  rag_pipeline_variables: []

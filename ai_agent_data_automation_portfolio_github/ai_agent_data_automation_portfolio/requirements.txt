@@ -1,0 +1,12 @@
+streamlit
+python-dotenv
+pandas
+matplotlib
+requests
+langchain
+langchain-openai
+langchain-community
+langchain-text-splitters
+langgraph
+faiss-cpu
+pytz

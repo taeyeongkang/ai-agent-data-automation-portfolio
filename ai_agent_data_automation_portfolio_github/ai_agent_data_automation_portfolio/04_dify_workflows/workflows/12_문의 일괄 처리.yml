@@ -1,0 +1,781 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 문의 일괄 처리
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.2.23@f500332838ed670d0962a4f727618a2eb7e27a453ea56e72a28731f5f383ab72
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1792042674493-source-1792042778061-target
+      source: '1792042674493'
+      sourceHandle: source
+      target: '1792042778061'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1792042778061-source-1792042936759-target
+      source: '1792042778061'
+      sourceHandle: source
+      target: '1792042936759'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: iteration-start
+        targetType: question-classifier
+      id: 1792042936759start-source-1792042983057-target
+      source: 1792042936759start
+      sourceHandle: source
+      target: '1792042983057'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1792042983057-1-1792043150563-target
+      source: '1792042983057'
+      sourceHandle: '1'
+      target: '1792043150563'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1792043150563-source-1792043272789-target
+      source: '1792043150563'
+      sourceHandle: source
+      target: '1792043272789'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: if-else
+        targetType: template-transform
+      id: 1792043272789-true-1792043316549-target
+      source: '1792043272789'
+      sourceHandle: 'true'
+      target: '1792043316549'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: if-else
+        targetType: llm
+      id: 1792043272789-false-1792043413343-target
+      source: '1792043272789'
+      sourceHandle: 'false'
+      target: '1792043413343'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: llm
+        targetType: template-transform
+      id: 1792043413343-source-1792043575227-target
+      source: '1792043413343'
+      sourceHandle: source
+      target: '1792043575227'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: question-classifier
+        targetType: template-transform
+      id: 1792042983057-2-1792043679095-target
+      source: '1792042983057'
+      sourceHandle: '2'
+      target: '1792043679095'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: question-classifier
+        targetType: template-transform
+      id: 1792042983057-1792043097628-1792043915236-target
+      source: '1792042983057'
+      sourceHandle: '1792043097628'
+      target: '1792043915236'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1792043575227-source-1792045018739-target
+      source: '1792043575227'
+      sourceHandle: source
+      target: '1792045018739'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1792043316549-source-1792045018739-target
+      source: '1792043316549'
+      sourceHandle: source
+      target: '1792045018739'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1792043679095-source-1792045018739-target
+      source: '1792043679095'
+      sourceHandle: source
+      target: '1792045018739'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1792043915236-source-1792045018739-target
+      source: '1792043915236'
+      sourceHandle: source
+      target: '1792045018739'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1792042936759-source-1792045330459-target
+      source: '1792042936759'
+      sourceHandle: source
+      target: '1792045330459'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1792045330459-source-1792045510142-target
+      source: '1792045330459'
+      sourceHandle: source
+      target: '1792045510142'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 시작
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: 문의
+          max_length: 5000
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: inquiries
+      height: 108
+      id: '1792042674493'
+      position:
+        x: 0
+        y: 141.00357142857143
+      positionAbsolute:
+        x: 0
+        y: 141.00357142857143
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        code: "def main(inquiries: str) -> dict:\n    # inquiries: 상담문의 CSV 글자 전체(첫\
+          \ 줄은 머리글)\n    questions, expected = [], []\n    for line in inquiries.strip().splitlines()[1:]:\n\
+          \        cols = [c.strip() for c in line.split(\",\")]\n        if len(cols)\
+          \ >= 3:\n            questions.append(\",\".join(cols[1:-1]))\n        \
+          \    expected.append(cols[-1])\n    return {\"questions\": questions, \"\
+          expected\": expected}"
+        code_language: python3
+        outputs:
+          expected:
+            children: null
+            type: array[string]
+          questions:
+            children: null
+            type: array[string]
+        selected: false
+        title: 줄 나누기
+        type: code
+        variables:
+        - value_selector:
+          - '1792042674493'
+          - inquiries
+          value_type: string
+          variable: inquiries
+      height: 51
+      id: '1792042778061'
+      position:
+        x: 342
+        y: 187.50357142857143
+      positionAbsolute:
+        x: 342
+        y: 187.50357142857143
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        error_handle_mode: terminated
+        flatten_output: true
+        height: 443.00714285714287
+        is_parallel: false
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1792042778061'
+        - questions
+        output_selector:
+        - '1792045018739'
+        - output
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1792042936759start
+        title: 문의별 처리
+        type: iteration
+        width: 2150
+      height: 443.00714285714287
+      id: '1792042936759'
+      position:
+        x: 683
+        y: 0
+      positionAbsolute:
+        x: 683
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 2150
+      zIndex: 0
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1792042936759start
+      parentId: '1792042936759'
+      position:
+        x: 60
+        y: 196.17142857142858
+      positionAbsolute:
+        x: 743
+        y: 196.17142857142858
+      selectable: false
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1001
+    - data:
+        classes:
+        - id: '1'
+          label: 규정
+          name: 회사 규정·제도에 대한 질문. 연차·휴가·근태, 경비 정산·결재 한도, 재택근무 신청 자격·절차 등
+        - id: '2'
+          label: 일정
+          name: 회의·교육·마감·행사가 언제인지 묻는 질문
+        - id: '1792043097628'
+          label: 기타
+          name: 규정도 일정도 아닌 질문. 시설 이용·IT 계정·잡담 등
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        query_variable_selector:
+        - '1792042936759'
+        - item
+        selected: false
+        title: 문의 분류
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 219
+      id: '1792042983057'
+      parentId: '1792042936759'
+      position:
+        x: 184
+        y: 118.67142857142859
+      positionAbsolute:
+        x: 867
+        y: 118.67142857142859
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        dataset_ids:
+        - IEz/VPwIbGhecfuDvKlzhCwAamRZm+ueAUEE0AckbRDqxXmuRtXGJeOFRPdgTB9l
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: qwen3-rerank
+            provider: langgenius/tongyi/tongyi
+          top_k: 4
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1792042936759'
+        - item
+        retrieval_mode: multiple
+        selected: false
+        title: 지식 검색
+        type: knowledge-retrieval
+      height: 89
+      id: '1792043150563'
+      parentId: '1792042936759'
+      position:
+        x: 525
+        y: 62.16666666666666
+      positionAbsolute:
+        x: 1208
+        y: 62.16666666666666
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: 69e44dc9-80e7-4db2-989d-01bddb9fcd6b
+            value: ''
+            varType: array[object]
+            variable_selector:
+            - '1792043150563'
+            - result
+          logical_operator: and
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 123
+      id: '1792043272789'
+      parentId: '1792042936759'
+      position:
+        x: 846
+        y: 60
+      positionAbsolute:
+        x: 1529
+        y: 60
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        selected: false
+        template: 규정|확인 필요|규정에서 근거를 찾지 못했습니다
+        title: 확인 필요 행
+        type: template-transform
+        variables: []
+      height: 51
+      id: '1792043316549'
+      parentId: '1792042936759'
+      position:
+        x: 1187
+        y: 67.95714285714286
+      positionAbsolute:
+        x: 1870
+        y: 67.95714285714286
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: d587107e-cc8c-4902-a3ed-f952a7f6b4b8
+          role: system
+          text: '너는 나래소프트 상담 창구의 답변 초안을 쓰는 도우미다. 아래 규정 내용만 근거로 문의에 두 문장 이내로 답하고, 끝에
+            「근거: 문서명 제n조」를 붙인다. 규정 내용으로 답할 수 없으면 「확인 필요」라고만 쓴다. 규정이 바뀌었는지처럼 규정에 없는
+            것을 물어도「확인 필요」라고만 쓴다. 줄바꿈 없이 한 줄로 쓴다.
+
+            {{#context#}}
+
+
+            문의: {{#1792042936759.item#}}'
+        selected: false
+        title: 답변 초안
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1792043413343'
+      parentId: '1792042936759'
+      position:
+        x: 1187
+        y: 146.45714285714286
+      positionAbsolute:
+        x: 1870
+        y: 146.45714285714286
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        selected: false
+        template: 규정|답변|{{ text }}
+        title: 규정 행
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1792043413343'
+          - text
+          value_type: string
+          variable: text
+      height: 51
+      id: '1792043575227'
+      parentId: '1792042936759'
+      position:
+        x: 1508
+        y: 178.95714285714286
+      positionAbsolute:
+        x: 2191
+        y: 178.95714285714286
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        selected: false
+        template: 일정|안내|사내 캘린더 또는 담당 부서 공지에서 확인해 주세요
+        title: 일정 행
+        type: template-transform
+        variables: []
+      height: 51
+      id: '1792043679095'
+      parentId: '1792042936759'
+      position:
+        x: 866
+        y: 257.00714285714287
+      positionAbsolute:
+        x: 1549
+        y: 257.00714285714287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        selected: false
+        template: 기타|안내|총무팀 또는 IT헬프데스크(내선 1234)로 문의해 주세요
+        title: 기타 행
+        type: template-transform
+        variables: []
+      height: 51
+      id: '1792043915236'
+      parentId: '1792042936759'
+      position:
+        x: 866
+        y: 332.00714285714287
+      positionAbsolute:
+        x: 1549
+        y: 332.00714285714287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792042936759'
+        output_type: string
+        selected: false
+        title: 행 합치기
+        type: variable-aggregator
+        variables:
+        - - '1792043575227'
+          - output
+        - - '1792043316549'
+          - output
+        - - '1792043679095'
+          - output
+        - - '1792043915236'
+          - output
+      height: 188
+      id: '1792045018739'
+      parentId: '1792042936759'
+      position:
+        x: 1849
+        y: 182.89999999999998
+      positionAbsolute:
+        x: 2532
+        y: 182.89999999999998
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        code: "import csv, io\n\ndef main(questions: list, expected: list, results:\
+          \ list) -> dict:\n    # results: 반복이 모은 \"분류|상태|답변 초안\" 문자열 배열\n    buf\
+          \ = io.StringIO()\n    w = csv.writer(buf)\n    w.writerow([\"번호\", \"문의\"\
+          , \"분류\", \"기대 분류\", \"일치\", \"상태\", \"답변 초안\"])\n    match, judged, need,\
+          \ count = 0, 0, 0, {}\n    for i, (q, e, r) in enumerate(zip(questions,\
+          \ expected, results), 1):\n        cat, state, ans = (r.split(\"|\", 2)\
+          \ + [\"\", \"\", \"\"])[:3]\n        ok = \"-\" if e == \"애매\" else (\"\
+          ○\" if cat == e else \"×\")\n        judged += ok != \"-\"\n        match\
+          \ += ok == \"○\"\n        need += state == \"확인 필요\"\n        count[cat]\
+          \ = count.get(cat, 0) + 1\n        w.writerow([i, q, cat, e, ok, state,\
+          \ ans.replace(\"\\n\", \" \")])\n    summary = (f\"총 {len(results)}건 · \"\
+          \ + \" · \".join(f\"{k} {v}건\" for k, v in count.items())\n            \
+          \   + f\" · 확인 필요 {need}건 · 기대 분류 일치 {match} / {judged}\")\n    return {\"\
+          csv\": buf.getvalue(), \"summary\": summary}"
+        code_language: python3
+        outputs:
+          csv:
+            children: null
+            type: string
+          summary:
+            children: null
+            type: string
+        selected: false
+        title: CSV · 요약
+        type: code
+        variables:
+        - value_selector:
+          - '1792042778061'
+          - questions
+          value_type: array[string]
+          variable: questions
+        - value_selector:
+          - '1792042778061'
+          - expected
+          value_type: array[string]
+          variable: expected
+        - value_selector:
+          - '1792042936759'
+          - output
+          value_type: array[string]
+          variable: results
+      height: 51
+      id: '1792045330459'
+      position:
+        x: 2933
+        y: 269.8380952380952
+      positionAbsolute:
+        x: 2933
+        y: 269.8380952380952
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1792045330459'
+          - csv
+          value_type: string
+          variable: csv
+        - value_selector:
+          - '1792045330459'
+          - summary
+          value_type: string
+          variable: summary
+        selected: false
+        title: 출력
+        type: end
+      height: 114
+      id: '1792045510142'
+      position:
+        x: 3274
+        y: 246.8380952380952
+      positionAbsolute:
+        x: 3274
+        y: 246.8380952380952
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    viewport:
+      x: -758.4285714285716
+      y: 572.3571428571428
+      zoom: 1
+  rag_pipeline_variables: []

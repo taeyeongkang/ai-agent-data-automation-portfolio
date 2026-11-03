@@ -1,0 +1,140 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: agent-chat
+  name: 업무 도우미 에이전트
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+kind: app
+model_config:
+  agent_mode:
+    enabled: true
+    max_iteration: 10
+    prompt: null
+    strategy: function_call
+    tools:
+    - enabled: true
+      notAuthor: false
+      provider_id: 9ea38111-6ca7-4a21-88fa-1558a6a72d4c
+      provider_name: 내일 날씨 알리미
+      provider_type: workflow
+      tool_label: 내일 날씨 알리미
+      tool_name: tomorrow_weather
+      tool_parameters:
+        city: ''
+      type: workflow
+    - enabled: true
+      notAuthor: false
+      provider_id: 47e345c5-5951-45ee-9392-fcbedfeaacd4
+      provider_name: 공휴일 조회
+      provider_type: api
+      tool_label: getPublicHolidays
+      tool_name: getPublicHolidays
+      tool_parameters:
+        countryCode: null
+        year: null
+      type: api
+    - enabled: true
+      notAuthor: false
+      provider_id: 47e345c5-5951-45ee-9392-fcbedfeaacd4
+      provider_name: 공휴일 조회
+      provider_type: api
+      tool_label: getNextPublicHolidays
+      tool_name: getNextPublicHolidays
+      tool_parameters:
+        countryCode: null
+      type: api
+    - enabled: true
+      notAuthor: false
+      provider_id: time
+      provider_name: time
+      provider_type: builtin
+      tool_label: Current Time
+      tool_name: current_time
+      tool_parameters:
+        format: '%Y-%m-%d %H:%M:%S'
+        timezone: Asia/Seoul
+      type: builtin
+  annotation_reply:
+    embedding_model:
+      embedding_model_name: text-embedding-3-small
+      embedding_provider_name: langgenius/openai/openai
+    enabled: true
+    id: 6e83b019-f606-46a2-af95-caff26b86697
+    score_threshold: 0.1
+  chat_prompt_config:
+    prompt:
+    - role: system
+      text: ''
+  completion_prompt_config:
+    conversation_histories_role:
+      assistant_prefix: ''
+      user_prefix: ''
+    prompt:
+      text: ''
+  dataset_configs:
+    datasets:
+      datasets: []
+    retrieval_model: multiple
+    top_k: 4
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .WEBM
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+    number_limits: 3
+  model:
+    completion_params:
+      stop: []
+    mode: chat
+    name: gpt-4.1-mini
+    provider: langgenius/openai/openai
+  more_like_this:
+    enabled: false
+  opening_statement: ''
+  pre_prompt: 너는 사내 직원을 돕는 업무 도우미다. 날짜·날씨·공휴일처럼 바뀌는 사실은 기억으로 답하지 말고 도구로 확인한 뒤 답한다.
+    도구 결과에 없는 내용은 지어내지 않는다. 도구가 실패하거나 맞는 도구가 없으면 그렇다고 말한다. 답은 한국어 두세 문장으로 한다.
+  prompt_type: simple
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    enabled: false
+  speech_to_text:
+    enabled: false
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    enabled: false
+    language: ''
+    voice: ''
+  user_input_form: []
+version: 0.7.0

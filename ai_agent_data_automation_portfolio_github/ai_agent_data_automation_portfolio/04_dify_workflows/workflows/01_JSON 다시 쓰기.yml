@@ -1,0 +1,401 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: JSON 다시 쓰기
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: loop
+      id: 1792030011220-source-1792030054892-target
+      source: '1792030011220'
+      sourceHandle: source
+      target: '1792030054892'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1792030054892'
+        sourceType: loop-start
+        targetType: llm
+      id: 1792030054892start-source-1792030258802-target
+      source: 1792030054892start
+      sourceHandle: source
+      target: '1792030258802'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1792030054892'
+        sourceType: llm
+        targetType: code
+      id: 1792030258802-source-1792030346283-target
+      source: '1792030258802'
+      sourceHandle: source
+      target: '1792030346283'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1792030054892'
+        sourceType: code
+        targetType: assigner
+      id: 1792030346283-source-1792030450089-target
+      source: '1792030346283'
+      sourceHandle: source
+      target: '1792030450089'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: loop
+        targetType: end
+      id: 1792030054892-source-1792030688837-target
+      source: '1792030054892'
+      sourceHandle: source
+      target: '1792030688837'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 시작
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: memo
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: memo
+      height: 108
+      id: '1792030011220'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        break_conditions:
+        - comparison_operator: '='
+          id: ee508ee6-921e-462a-9c74-c490e5d18444
+          value: '1'
+          varType: number
+          variable_selector:
+          - '1792030054892'
+          - ok
+        error_handle_mode: terminated
+        height: 223
+        logical_operator: and
+        loop_count: 3
+        loop_variables:
+        - id: 001f5027-fc36-448e-b9c8-dc77b75c01ab
+          label: err
+          value: 없음
+          value_type: constant
+          var_type: string
+        - id: 007f9234-f2c0-4aea-af6b-ed074dbd5d4f
+          label: ok
+          value: '0'
+          value_type: constant
+          var_type: number
+        - id: 2c837268-19f6-4853-b362-da83d6513f80
+          label: out
+          value: ''
+          value_type: constant
+          var_type: string
+        selected: false
+        start_node_id: 1792030054892start
+        title: 형식 맞추기
+        type: loop
+        width: 987
+      height: 223
+      id: '1792030054892'
+      position:
+        x: 382
+        y: 282
+      positionAbsolute:
+        x: 382
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 987
+      zIndex: 0
+    - data:
+        desc: ''
+        isInLoop: true
+        selected: false
+        title: ''
+        type: loop-start
+      draggable: false
+      height: 48
+      id: 1792030054892start
+      parentId: '1792030054892'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 406
+        y: 350
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-loop-start
+      width: 44
+      zIndex: 1001
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1792030054892'
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: dc67200f-b20d-4ed5-8f85-73142c0aaff6
+          role: system
+          text: '아래 메모를 JSON 하나로만 정리한다. 설명이나 코드 블록 표시 없이 JSON만 출력한다.
+
+            앞 시도에서 지적된 문제: {{#1792030054892.err#}}
+
+
+            메모: {{#1792030011220.memo#}}
+
+            '
+        selected: false
+        title: JSON 쓰기
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1792030258802'
+      parentId: '1792030054892'
+      position:
+        x: 128
+        y: 68
+      positionAbsolute:
+        x: 510
+        y: 350
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        code: "import json\n\ndef main(text: str) -> dict:\n    need = [\"date\",\
+          \ \"owner\", \"amount\"]\n    try:\n        d = json.loads(text)\n    except\
+          \ Exception as e:\n        return {\"ok\": 0, \"err\": f\"JSON으로 읽을 수 없다:\
+          \ {e}\"}\n    miss = [k for k in need if k not in d]\n    if miss:\n   \
+          \     return {\"ok\": 0, \"err\": \"빠진 키: \" + \", \".join(miss) + \" (키는\
+          \ date, owner, amount 세 개만 쓴다)\"}\n    if not isinstance(d[\"amount\"],\
+          \ (int, float)):\n        return {\"ok\": 0, \"err\": \"amount는 따옴표·쉼표 없는\
+          \ 숫자여야 한다\"}\n    return {\"ok\": 1, \"err\": \"없음\"}"
+        code_language: python3
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1792030054892'
+        outputs:
+          err:
+            children: null
+            type: string
+          ok:
+            children: null
+            type: number
+        selected: false
+        title: 형식 검사
+        type: code
+        variables:
+        - value_selector:
+          - '1792030258802'
+          - text
+          value_type: string
+          variable: text
+      height: 51
+      id: '1792030346283'
+      parentId: '1792030054892'
+      position:
+        x: 429
+        y: 68
+      positionAbsolute:
+        x: 811
+        y: 350
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1792030346283'
+          - ok
+          variable_selector:
+          - '1792030054892'
+          - ok
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1792030346283'
+          - err
+          variable_selector:
+          - '1792030054892'
+          - err
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1792030258802'
+          - text
+          variable_selector:
+          - '1792030054892'
+          - out
+        loop_id: '1792030054892'
+        selected: false
+        title: 결과 저장
+        type: assigner
+        version: '2'
+      height: 135
+      id: '1792030450089'
+      parentId: '1792030054892'
+      position:
+        x: 730
+        y: 68
+      positionAbsolute:
+        x: 1112
+        y: 350
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        outputs:
+        - value_selector:
+          - '1792030054892'
+          - out
+          value_type: string
+          variable: json
+        - value_selector:
+          - '1792030054892'
+          - ok
+          value_type: number
+          variable: ok
+        - value_selector:
+          - '1792030054892'
+          - err
+          value_type: string
+          variable: err
+        selected: false
+        title: 출력
+        type: end
+      height: 141
+      id: '1792030688837'
+      position:
+        x: 1429
+        y: 282
+      positionAbsolute:
+        x: 1429
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    viewport:
+      x: -593.5
+      y: 300
+      zoom: 1
+  rag_pipeline_variables: []

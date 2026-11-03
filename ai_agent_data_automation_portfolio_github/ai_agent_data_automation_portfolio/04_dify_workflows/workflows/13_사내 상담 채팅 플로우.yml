@@ -1,0 +1,763 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: advanced-chat
+  name: 사내 상담 채팅 플로우
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.2.22@9cea96ffc7977f536c02999c80ff1283b1819aab9b6fa2fdf789d0c6c7d03715
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables:
+  - description: 질문자의 고용 형태
+    id: c1156ddf-879d-4be8-a35c-d34ff1e3c769
+    name: emp_type
+    selector:
+    - conversation
+    - emp_type
+    value: 미확인
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1791876121698-2-1791876547166-target
+      selected: false
+      source: '1791876121698'
+      sourceHandle: '2'
+      target: '1791876547166'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1791876121698-1791876354128-1791876559021-target
+      selected: false
+      source: '1791876121698'
+      sourceHandle: '1791876354128'
+      target: '1791876559021'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1791877783465-true-1791877936300-target
+      selected: false
+      source: '1791877783465'
+      sourceHandle: 'true'
+      target: '1791877936300'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: knowledge-retrieval
+      id: 1791876121698-1-1791877592150-target
+      selected: false
+      source: '1791876121698'
+      sourceHandle: '1'
+      target: '1791877592150'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1791877592150-source-1791877783465-target
+      selected: false
+      source: '1791877592150'
+      sourceHandle: source
+      target: '1791877783465'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1791877783465-false-llm-target
+      selected: false
+      source: '1791877783465'
+      sourceHandle: 'false'
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: question-classifier
+      id: 1791878820202-source-1791876121698-target
+      selected: false
+      source: '1791878820202'
+      sourceHandle: source
+      target: '1791876121698'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: llm-source-1791879142776-target
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: '1791879142776'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: answer
+      id: 1791879142776-source-answer-target
+      selected: false
+      source: '1791879142776'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1791876547166-source-1791879142776-target
+      selected: false
+      source: '1791876547166'
+      sourceHandle: source
+      target: '1791879142776'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1791876559021-source-1791879142776-target
+      selected: false
+      source: '1791876559021'
+      sourceHandle: source
+      target: '1791879142776'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1791876048754-source-1791940264299-target
+      selected: false
+      source: '1791876048754'
+      sourceHandle: source
+      target: '1791940264299'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: assigner
+      id: 1791940264299-source-1791940372420-target
+      selected: false
+      source: '1791940264299'
+      sourceHandle: source
+      target: '1791940372420'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1791940372420-source-1791878820202-target
+      selected: false
+      source: '1791940372420'
+      sourceHandle: source
+      target: '1791878820202'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1791878820202-source-1791940842715-target
+      selected: false
+      source: '1791878820202'
+      sourceHandle: source
+      target: '1791940842715'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1791940842715-source-answer-target
+      source: '1791940842715'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 시작
+        type: start
+        variables: []
+      height: 72
+      id: '1791876048754'
+      position:
+        x: 0
+        y: 336.60238095238094
+      positionAbsolute:
+        x: 0
+        y: 336.60238095238094
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1791877592150'
+          - result
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: ce943f22-637e-4a2d-9738-1ef0375ec9a5
+          role: system
+          text: '너는 주식회사 나래소프트의 사내 규정 안내 도우미다.
+
+            규칙
+
+            1. 제공된 규정 내용만 근거로 답한다. 규정에 없는 내용은 추측하지 말고 "규정에서 확인할 수 없습니다. 인사팀에 문의해 주세요."라고만
+            답한다.
+
+            2. 일수·금액·기한 같은 숫자는 규정 문구 그대로 쓴다.
+
+            3. 답 끝에 근거를 「문서명 + 조항 번호」로 한 줄 적는다. 규정에서 확인할 수 없을 때는 근거를 적지 않는다.
+
+            4. 존댓말로 3문장 이내로 답한다.
+
+            질문자의 고용 형태: {{#conversation.emp_type#}} (규정이 고용 형태에 따라 다르면 이 고용 형태 기준으로
+            답한다. 미확인이면 일반 직원 기준)
+
+
+            규정 내용 : {{#context#}}'
+        selected: false
+        title: 규정 답변
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: llm
+      position:
+        x: 2448
+        y: 195
+      positionAbsolute:
+        x: 2448
+        y: 195
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        answer: '{{#1791879142776.output#}}
+
+
+          {{#1791940842715.text#}}'
+        selected: false
+        title: 답변
+        type: answer
+        variables: []
+      height: 119
+      id: answer
+      position:
+        x: 3170
+        y: 461.4547619047619
+      positionAbsolute:
+        x: 3170
+        y: 461.4547619047619
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        classes:
+        - id: '1'
+          label: 규정
+          name: 회사 규정·제도에 대한 질문. 연차·휴가·근태, 경비 정산·결재 한도, 재택근무 신청 자격·절차 등
+        - id: '2'
+          label: 일정
+          name: 회의·교육·마감·행사가 언제인지 묻는 질문
+        - id: '1791876354128'
+          label: 기타
+          name: 규정도 일정도 아닌 질문. 시설 이용·IT 계정·잡담 등
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        query_variable_selector:
+        - '1791878820202'
+        - text
+        selected: false
+        title: 질문 분류기
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 219
+      id: '1791876121698'
+      position:
+        x: 1385
+        y: 164.7464285714286
+      positionAbsolute:
+        x: 1385
+        y: 164.7464285714286
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 80cf2f31-5d9a-48e2-9581-b6900cf38860
+          role: system
+          text: '너는 나래소프트 사내 상담 챗봇의 일정 담당이다. 너는 사내 캘린더를 볼 수 없다. 직원의 문의에서 어떤 일정(회의·교육·마감·행사)을
+            묻는지 한 줄로 정리하고, "사내 캘린더 또는 담당 부서 공지에서 확인해 주세요"라고 안내한다. 날짜를 지어내지 않는다. 존댓말
+            2문장.
+
+            문의: {{#1791878820202.text#}}'
+        selected: false
+        title: 일정 답변
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791876547166'
+      position:
+        x: 2087
+        y: 308.54999999999995
+      positionAbsolute:
+        x: 2087
+        y: 308.54999999999995
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 9fa341c4-10c0-4424-a41c-cbf435a5c516
+          role: system
+          text: '너는 나래소프트 사내 상담 챗봇이다. 이 문의는 규정도 일정도 아니다. 시설·복리는 총무팀, 계정·기기는 IT헬프데스크(내선
+            1234)로 안내하고, 그 밖의 것은 "이 챗봇은 규정과 일정 문의를 돕습니다"라고 답한다. 존댓말 2문장.
+
+            문의: {{#1791878820202.text#}}'
+        selected: false
+        title: 기타 안내
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791876559021'
+      position:
+        x: 1746
+        y: 403.04999999999995
+      positionAbsolute:
+        x: 1746
+        y: 403.04999999999995
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        dataset_ids:
+        - IEz/VPwIbGhecfuDvKlzhCwAamRZm+ueAUEE0AckbRDqxXmuRtXGJeOFRPdgTB9l
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: qwen3-rerank
+            provider: langgenius/tongyi/tongyi
+          score_threshold: 0.5
+          top_k: 3
+        query_attachment_selector: []
+        query_variable_selector:
+        - '1791878820202'
+        - text
+        retrieval_mode: multiple
+        selected: false
+        title: 지식 검색
+        type: knowledge-retrieval
+      height: 89
+      id: '1791877592150'
+      position:
+        x: 1746
+        y: 71.50833333333333
+      positionAbsolute:
+        x: 1746
+        y: 71.50833333333333
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: 04ba0d1a-d1ee-4505-8406-bcda3ab79998
+            value: ''
+            varType: array[object]
+            variable_selector:
+            - '1791877592150'
+            - result
+          logical_operator: and
+        selected: false
+        title: 검색 결과 확인
+        type: if-else
+      height: 123
+      id: '1791877783465'
+      position:
+        x: 2087
+        y: 69.34166666666664
+      positionAbsolute:
+        x: 2087
+        y: 69.34166666666664
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        answer: 규정 문서에서 관련 내용을 찾지 못했습니다. 인사팀에 문의해 주세요.
+        selected: false
+        title: 확인 불가
+        type: answer
+        variables: []
+      height: 115
+      id: '1791877936300'
+      position:
+        x: 2448
+        y: 0
+      positionAbsolute:
+        x: 2448
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 2b219ea1-b443-4345-8d4c-b52e4559320c
+          role: system
+          text: 너는 질문을 다시 쓰는 도우미다. 앞 대화를 참고해 사용자의 마지막 질문을, 앞 대화 없이 읽어도 뜻이 통하는 완전한
+            한 문장으로 다시 쓴다. 이미 완전한 질문이면 그대로 둔다. 질문에 답하지 말고 다시 쓴 질문 한 문장만 출력한다.
+        selected: false
+        title: 질문 재작성
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791878820202'
+      position:
+        x: 1024
+        y: 369.4357142857143
+      positionAbsolute:
+        x: 1024
+        y: 369.4357142857143
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        output_type: string
+        selected: false
+        title: 답 합치기
+        type: variable-aggregator
+        variables:
+        - - llm
+          - text
+        - - '1791876547166'
+          - text
+        - - '1791876559021'
+          - text
+      height: 161
+      id: '1791879142776'
+      position:
+        x: 2809
+        y: 317.2166666666666
+      positionAbsolute:
+        x: 2809
+        y: 317.2166666666666
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 749f8138-7fe2-4d33-8fe7-78245ca6b96f
+          role: system
+          text: '사용자 메시지에 자신의 고용 형태가 나오면 「정규직」「계약직」「인턴」 중 하나만 출력한다. 나오지 않으면 현재 저장된
+            값을 그대로 출력한다. 다른 말은 쓰지 않는다.
+
+            현재 저장된 값: {{#conversation.emp_type#}}
+
+            사용자 메시지: {{#sys.query#}}'
+        selected: false
+        title: 고용 형태 추출
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791940264299'
+      position:
+        x: 342
+        y: 341.10238095238094
+      positionAbsolute:
+        x: 342
+        y: 341.10238095238094
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1791940264299'
+          - text
+          variable_selector:
+          - conversation
+          - emp_type
+        selected: false
+        title: 변수 할당자
+        type: assigner
+        version: '2'
+      height: 83
+      id: '1791940372420'
+      position:
+        x: 683
+        y: 357.60238095238094
+      positionAbsolute:
+        x: 683
+        y: 357.60238095238094
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 5f1e8c5a-e76f-4598-8f88-7c68574febed
+          role: system
+          text: '너는 일반 상담 도우미다. 회사 규정은 보지 않고 일반적인 상식으로 존댓말 2문장으로 답한다. 질문: {{#1791878820202.text#}}'
+        selected: false
+        title: 일반 답변
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791940842715'
+      position:
+        x: 2809
+        y: 512.05
+      positionAbsolute:
+        x: 2809
+        y: 512.05
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -1347.35
+      y: 287.8316666666667
+      zoom: 0.7
+  rag_pipeline_variables: []

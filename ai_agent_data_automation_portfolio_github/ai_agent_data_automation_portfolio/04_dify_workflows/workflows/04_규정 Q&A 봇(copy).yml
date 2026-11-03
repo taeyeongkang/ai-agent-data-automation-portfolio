@@ -1,0 +1,387 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: advanced-chat
+  name: 규정 Q&A 봇(copy)
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.2.23@f500332838ed670d0962a4f727618a2eb7e27a453ea56e72a28731f5f383ab72
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      - .MP4
+      - .MOV
+      - .MPEG
+      - .WEBM
+      allowed_file_types: []
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - remote_url
+        - local_file
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: start-knowledge_retrieval
+      source: start
+      sourceHandle: source
+      target: knowledge_retrieval
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: knowledge_retrieval-llm
+      source: knowledge_retrieval
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: parameter-extractor
+      id: start-source-1792137460237-target
+      source: start
+      sourceHandle: source
+      target: '1792137460237'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: http-request
+      id: 1792137460237-source-1792137536602-target
+      source: '1792137460237'
+      sourceHandle: source
+      target: '1792137536602'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1792137536602-source-llm-target
+      source: '1792137536602'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: START
+        type: start
+        variables: []
+      height: 72
+      id: start
+      position:
+        x: 0
+        y: 54.599999999999994
+      positionAbsolute:
+        x: 0
+        y: 54.599999999999994
+      selected: false
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        dataset_ids:
+        - 3BsH7tgLvOaFVwcyID91RgCg5q+JXyyg0Vec31dCI/ASWYmfqhKQYsgMtNY+SBXF
+        - IEz/VPwIbGhecfuDvKlzhCwAamRZm+ueAUEE0AckbRDqxXmuRtXGJeOFRPdgTB9l
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: qwen3-rerank
+            provider: langgenius/tongyi/tongyi
+          score_threshold: 0.5
+          top_k: 3
+        query_attachment_selector: []
+        query_variable_selector:
+        - sys
+        - query
+        retrieval_mode: multiple
+        selected: false
+        single_retrieval_config: null
+        title: KNOWLEDGE RETRIEVAL
+        type: knowledge-retrieval
+      height: 117
+      id: knowledge_retrieval
+      position:
+        x: 703
+        y: 0
+      positionAbsolute:
+        x: 703
+        y: 0
+      selected: false
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - knowledge_retrieval
+          - result
+        memory:
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+        model:
+          completion_params:
+            stop: []
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 75e2db8b-5201-4da6-badc-27aa3c9de675
+          role: user
+          text: 'Use the following context as your learned knowledge, inside <context></context>
+            XML tags.
+
+
+            <context>
+
+            {{#context#}}
+
+            </context>
+
+
+            When answer to user:
+
+            - If you don''t know, just say that you don''t know.
+
+            - If you don''t know when you are not sure, ask for clarification.
+
+            Avoid mentioning that you obtained the information from the context.
+
+            And answer according to the language of the user''s question.
+
+
+            너는 주식회사 나래소프트의 사내 규정 안내 도우미다.
+
+            규칙
+
+            1. 제공된 규정 내용만 근거로 답한다. 규정에 없는 내용은 추측하지 말고 "규정에서 확인할 수 없습니다. 인사팀에 문의해 주세요."라고만
+            답한다.
+
+            2. 일수·금액·기한 같은 숫자는 규정 문구 그대로 쓴다.
+
+            3. 답 끝에 근거를 「문서명 + 조항 번호」로 한 줄 적는다. 조항 번호는 문서에 적힌 그대로(예: 제7조, 별표 1, 2.1)
+            쓰고, 규정에서 확인할 수 없을 때는 근거를 적지 않는다.
+
+            4. 존댓말로 3문장 이내로 답한다.
+
+            5. 질문한 지역·대상이 규정에 따로 열거되어 있지 않으면 일반 기준을 적용해 답하고, 일반 기준을 적용했다고 밝힌다.
+
+            6. 아래 그래프 결과는 사내 조직도에서 온 사실이다. boss는 질문에 나온 사람의 상사, level은 몇 단계 위인지다(1은
+            바로 위 팀장, 2는 그 위 본부장). 규정 문서의 ''부서장''은 본부장, 곧 level 2인 상사를 말한다. 그래프 결과가
+            비어 있으면 결재자 이름은 모른다고 답한다.
+
+            그래프 결과: {{#1792137536602.body#}}
+
+            '
+        selected: true
+        title: LLM
+        type: llm
+        vision:
+          configs: null
+          enabled: false
+          variable_selector: null
+      height: 87
+      id: llm
+      position:
+        x: 1064
+        y: 84.33333333333333
+      positionAbsolute:
+        x: 1064
+        y: 84.33333333333333
+      selected: true
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        answer: '{{#llm.text#}}'
+        selected: false
+        title: ANSWER
+        type: answer
+      height: 101
+      id: answer
+      position:
+        x: 1405
+        y: 91.83333333333333
+      positionAbsolute:
+        x: 1405
+        y: 91.83333333333333
+      selected: false
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        parameters:
+        - description: 질문에서 나온 사람 이름
+          name: name
+          required: false
+          type: string
+        query:
+        - sys
+        - query
+        reasoning_mode: prompt
+        selected: false
+        title: 매개변수 추출기
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 87
+      id: '1792137460237'
+      position:
+        x: 362
+        y: 141
+      positionAbsolute:
+        x: 362
+        y: 141
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        authorization:
+          config:
+            api_key: REDACTED
+            type: basic
+          type: api-key
+        body:
+          data:
+          - type: text
+            value: '{"statement": "MATCH p=(e:__Entity__ {name: $name})<-[:MANAGES*1..3]-(boss:__Entity__)
+              RETURN boss.name AS boss, min(length(p)) AS level ORDER BY level", "parameters":{"name":"
+              {{#1792137460237.name#}}"}, "accessMode": "Read"}'
+          type: raw-text
+        headers: 'Content-Type: application/json'
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 요청
+        type: http-request
+        url: https://dcb1673e.databases.neo4j.io/db/dcb1673e/query/v2
+        variables: []
+      height: 136
+      id: '1792137536602'
+      position:
+        x: 703
+        y: 131
+      positionAbsolute:
+        x: 703
+        y: 131
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    viewport:
+      x: 132.5
+      y: 453.5
+      zoom: 1
+  rag_pipeline_variables: []

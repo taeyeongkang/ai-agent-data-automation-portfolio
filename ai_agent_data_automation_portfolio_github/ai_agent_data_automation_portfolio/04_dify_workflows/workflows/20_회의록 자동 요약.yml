@@ -1,0 +1,376 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 회의록 자동 요약
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: trigger-webhook
+        targetType: llm
+      id: 1791960937928-source-1791961091002-target
+      source: '1791960937928'
+      sourceHandle: source
+      target: '1791961091002'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1791961091002-source-1791961157351-target
+      source: '1791961091002'
+      sourceHandle: source
+      target: '1791961157351'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: trigger-schedule
+        targetType: http-request
+      id: 1791962621292-source-1791962947574-target
+      source: '1791962621292'
+      sourceHandle: source
+      target: '1791962947574'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: llm
+      id: 1791962947574-source-1791963045182-target
+      source: '1791962947574'
+      sourceHandle: source
+      target: '1791963045182'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1791963045182-source-1791963129382-target
+      source: '1791963045182'
+      sourceHandle: source
+      target: '1791963129382'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        async_mode: true
+        body:
+        - name: memo
+          required: true
+          type: string
+        content_type: application/json
+        headers: []
+        method: POST
+        params: []
+        response_body: ''
+        selected: false
+        status_code: 200
+        title: 웹훅 트리거
+        type: trigger-webhook
+        variables:
+        - label: raw
+          required: true
+          value_selector: []
+          value_type: object
+          variable: _webhook_raw
+        - label: body
+          required: true
+          value_selector: []
+          value_type: string
+          variable: memo
+        webhook_debug_url: ''
+        webhook_url: ''
+      height: 129
+      id: '1791960937928'
+      position:
+        x: 0
+        y: 0
+      positionAbsolute:
+        x: 0
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 8b4838bf-62a1-4104-af08-94e18d0a1601
+          role: system
+          text: '아래 회의 메모를 결정 사항과 할 일 중심으로 세 줄 이내로 요약한다.
+
+            메모: {{#1791960937928.memo#}}'
+        selected: false
+        title: 요약
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791961091002'
+      position:
+        x: 342
+        y: 42.5
+      positionAbsolute:
+        x: 342
+        y: 42.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1791961091002'
+          - text
+          value_type: string
+          variable: summary
+        selected: false
+        title: 출력
+        type: end
+      height: 87
+      id: '1791961157351'
+      position:
+        x: 683
+        y: 57
+      positionAbsolute:
+        x: 683
+        y: 57
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        config:
+          frequency: daily
+          mode: visual
+          timezone: UTC
+          visual_config:
+            monthly_days:
+            - 1
+            on_minute: 0
+            time: 12:00 AM
+            weekdays:
+            - sun
+        cron_expression: 0 7 * * 1-5
+        mode: cron
+        selected: true
+        timezone: Etc/GMT-9
+        title: 일정 트리거
+        type: trigger-schedule
+      height: 129
+      id: '1791962621292'
+      position:
+        x: 341
+        y: 209
+      positionAbsolute:
+        x: 341
+        y: 209
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - type: text
+            value: ''
+          type: none
+        headers: ''
+        method: get
+        params: 'latitude:37.57
+
+          longitude:126.98
+
+          daily:precipitation_probability_max,precipitation_sum,temperature_2m_max,temperature_2m_min
+
+          timezone:Asia/Seoul
+
+          forecast_days:2'
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 서울 예보
+        type: http-request
+        url: https://api.open-meteo.com/v1/forecast
+        variables: []
+      height: 136
+      id: '1791962947574'
+      position:
+        x: 683
+        y: 227
+      positionAbsolute:
+        x: 683
+        y: 227
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 75f242db-fb80-4739-b45b-4c855aee00c6
+          role: system
+          text: '아래는 서울의 오늘·내일 예보 JSON이다. daily 배열의 첫 번째 값(오늘)으로 강수 확률·강수량·최저/최고 기온을
+            한 문장으로 알리고, 우산이 필요한지 덧붙인다.
+
+            예보: {{#1791962947574.body#}}
+
+            '
+        selected: false
+        title: 아침 날씨 안내
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791963045182'
+      position:
+        x: 1024
+        y: 274.16666666666663
+      positionAbsolute:
+        x: 1024
+        y: 274.16666666666663
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1791963045182'
+          - text
+          value_type: string
+          variable: brief
+        selected: false
+        title: 아침 안내 출력
+        type: end
+      height: 87
+      id: '1791963129382'
+      position:
+        x: 1365
+        y: 288.66666666666663
+      positionAbsolute:
+        x: 1365
+        y: 288.66666666666663
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: 163.28571428571422
+      y: 404.21428571428567
+      zoom: 1
+  rag_pipeline_variables: []

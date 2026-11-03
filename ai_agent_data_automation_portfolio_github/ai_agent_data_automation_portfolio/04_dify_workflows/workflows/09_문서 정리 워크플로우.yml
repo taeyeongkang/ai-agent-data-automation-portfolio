@@ -1,0 +1,746 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 문서 정리 워크플로우
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: bowenliang123/md_exporter:4.0.0@eff5440a18b9fa10d7fe3f0a1b5a2ef1bf78ab8a19dd92e273daf7a346553106
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1791941365507-source-1791941466521-target
+      source: '1791941365507'
+      sourceHandle: source
+      target: '1791941466521'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1791941466521-source-1791941510025-target
+      source: '1791941466521'
+      sourceHandle: source
+      target: '1791941510025'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1791941510025-source-1791942141082-target
+      source: '1791941510025'
+      sourceHandle: source
+      target: '1791942141082'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: parameter-extractor
+        targetType: template-transform
+      id: 1791942141082-source-1791941598892-target
+      source: '1791942141082'
+      sourceHandle: source
+      target: '1791941598892'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: human-input
+      id: 1791941598892-source-1791944078710-target
+      source: '1791941598892'
+      sourceHandle: source
+      target: '1791944078710'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: human-input
+        targetType: end
+      id: 1791944078710-edit-1791944321353-target
+      source: '1791944078710'
+      sourceHandle: edit
+      target: '1791944321353'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: human-input
+        targetType: llm
+      id: 1791944078710-regen-1791944408932-target
+      source: '1791944078710'
+      sourceHandle: regen
+      target: '1791944408932'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1791944408932-source-1791944487938-target
+      source: '1791944408932'
+      sourceHandle: source
+      target: '1791944487938'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: human-input
+        targetType: tool
+      id: 1791944078710-approve-1791944794528-target
+      source: '1791944078710'
+      sourceHandle: approve
+      target: '1791944794528'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: 1791944794528-source-1791941803273-target
+      source: '1791944794528'
+      sourceHandle: source
+      target: '1791941803273'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 시작
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          default: ''
+          hide: false
+          hint: ''
+          label: 양식 문서(pdf)
+          options: []
+          placeholder: ''
+          required: true
+          type: file
+          variable: doc
+      height: 108
+      id: '1791941365507'
+      position:
+        x: 0
+        y: 37.97619047619048
+      positionAbsolute:
+        x: 0
+        y: 37.97619047619048
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        is_array_file: false
+        selected: false
+        title: Doc 추출기
+        type: document-extractor
+        variable_selector:
+        - '1791941365507'
+        - doc
+      height: 103
+      id: '1791941466521'
+      position:
+        x: 342
+        y: 58.47619047619048
+      positionAbsolute:
+        x: 342
+        y: 58.47619047619048
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 698da09c-5a54-4318-8380-3f53ad7474db
+          role: system
+          text: '너는 나래소프트 경영지원팀의 문서 정리 담당이다. 아래 문서 원문을 읽고 다음 양식 다섯 줄로만 정리한다. 원문에 없는
+            항목은 「없음」으로 쓴다. 날짜와 금액은 원문 표기 그대로 쓴다.
+
+            - 문서 종류:
+
+            - 기준일:
+
+            - 담당자:
+
+            - 금액:
+
+            - 요약(한 문장):
+
+            문서 원문: {{#1791941466521.text#}}'
+        selected: false
+        title: 양식 정리
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791941510025'
+      position:
+        x: 683
+        y: 83.64285714285717
+      positionAbsolute:
+        x: 683
+        y: 83.64285714285717
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        selected: false
+        template: "■ 문서 정리 카드\r\n원본 파일: {{ fname }}\r\n\r\n{{ body }}\r\n[추출값] 기준일\
+          \ {{ dt }} | 담당 {{ who }} | 금액 {{ amt }}\r\n\r\n※ 자동 정리 결과입니다. 금액은 원본과 대조하세요."
+        title: 정리 카드
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1791941510025'
+          - text
+          value_type: string
+          variable: body
+        - value_selector:
+          - '1791941365507'
+          - doc
+          - name
+          value_type: file
+          variable: fname
+        - value_selector:
+          - '1791942141082'
+          - doc_date
+          value_type: string
+          variable: dt
+        - value_selector:
+          - '1791942141082'
+          - owner
+          value_type: string
+          variable: who
+        - value_selector:
+          - '1791942141082'
+          - amount
+          value_type: number
+          variable: amt
+      height: 51
+      id: '1791941598892'
+      position:
+        x: 1365
+        y: 130.64285714285717
+      positionAbsolute:
+        x: 1365
+        y: 130.64285714285717
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1791941598892'
+          - output
+          value_type: string
+          variable: card
+        - value_selector:
+          - '1791944794528'
+          - files
+          value_type: array[file]
+          variable: docx
+        selected: false
+        title: 출력
+        type: end
+      height: 114
+      id: '1791941803273'
+      position:
+        x: 2408
+        y: 1
+      positionAbsolute:
+        x: 2408
+        y: 1
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        instruction: 문서에 없는 항목은 지어내지 말고 비워 둔다. 금액이 여러 개면 합계(총액) 하나만 넣는다.
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        parameters:
+        - description: '문서의 기준일(작성일·견적일·출장 시작일·신청일). YYYY-MM-DD 형식
+
+            '
+          name: doc_date
+          required: false
+          type: string
+        - description: 담당자·작성자·신청자 이름만(직함·부서 제외)
+          name: owner
+          required: false
+          type: string
+        - description: 문서의 합계 금액(원). 쉼표·단위 없이 숫자만
+          name: amount
+          required: false
+          type: number
+        - description: 문서 종류(지출결의서·견적서·출장보고서·교육비 신청서 등)
+          name: doc_type
+          required: false
+          type: string
+        query:
+        - '1791941466521'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 항목 추출
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 87
+      id: '1791942141082'
+      position:
+        x: 1024
+        y: 98.14285714285717
+      positionAbsolute:
+        x: 1024
+        y: 98.14285714285717
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        delivery_methods:
+        - enabled: true
+          id: 800ea0f6-96fe-4376-81ef-dad8d79b88f5
+          type: webapp
+        form_content: "정리 카드를 확인하고 아래 버튼 중 하나를 누르세요.\n{{#1791941598892.output#}}\n\
+          \n직접 수정할 때 고친 카드 : \n{{#$output.edited#}}\n"
+        inputs:
+        - default:
+            selector:
+            - '1791941598892'
+            - output
+            type: variable
+            value: ''
+          output_variable_name: edited
+          type: paragraph
+        selected: false
+        timeout: 3
+        timeout_unit: day
+        title: 사람 확인
+        type: human-input
+        user_actions:
+        - button_style: default
+          id: approve
+          title: 승인
+        - button_style: default
+          id: edit
+          title: 직접 수정
+        - button_style: default
+          id: regen
+          title: 재생성
+      height: 214
+      id: '1791944078710'
+      position:
+        x: 1706
+        y: 57.64285714285717
+      positionAbsolute:
+        x: 1706
+        y: 57.64285714285717
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1791944078710'
+          - edited
+          value_type: string
+          variable: card_edited
+        selected: false
+        title: 수정본 출력
+        type: end
+      height: 87
+      id: '1791944321353'
+      position:
+        x: 2067
+        y: 167
+      positionAbsolute:
+        x: 2067
+        y: 167
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: ab24556c-75c3-4f2b-82c9-036a592687d6
+          role: system
+          text: '너는 나래소프트 경영지원팀의 문서 정리 담당이다. 아래 문서 원문을 읽고 다음 양식 다섯 줄로만 정리한다. 원문에 없는
+            항목은 「없음」으로 쓴다. 날짜와 금액은 원문 표기 그대로 쓴다.
+
+            - 문서 종류:
+
+            - 기준일:
+
+            - 담당자:
+
+            - 금액:
+
+            - 요약(한 문장):
+
+            문서 원문: {{#1791941466521.text#}}'
+        selected: false
+        title: 다시 정리
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1791944408932'
+      position:
+        x: 2067
+        y: 334
+      positionAbsolute:
+        x: 2067
+        y: 334
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        outputs:
+        - value_selector:
+          - '1791944408932'
+          - text
+          value_type: string
+          variable: card_regen
+        selected: false
+        title: 재생성본 출력
+        type: end
+      height: 87
+      id: '1791944487938'
+      position:
+        x: 2408
+        y: 348.5
+      positionAbsolute:
+        x: 2408
+        y: 348.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          input_schema: null
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          multiple: false
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional docx template file for styling。Use "Home"-"Styles Pane"
+              in Microsoft Word to edit styles of the docx file.
+            ja_JP: Optional docx template file for styling。Use "Home"-"Styles Pane"
+              in Microsoft Word to edit styles of the docx file.
+            pt_BR: Optional docx template file for styling。Use "Home"-"Styles Pane"
+              in Microsoft Word to edit styles of the docx file.
+            zh_Hans: 可选的docx模板文件，用于样式控制。使用Microsoft Word中“开始”-“样式窗格”对docx文件的样式进行编辑。
+          input_schema: null
+          label:
+            en_US: DOCX Template File
+            ja_JP: DOCX Template File
+            pt_BR: DOCX Template File
+            zh_Hans: DOCX 模板文件
+          llm_description: An optional .pptx file that serves as a template for the
+            generated presentation
+          max: null
+          min: null
+          multiple: false
+          name: docx_template_file
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: file
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          input_schema: null
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          multiple: false
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'false'
+          form: form
+          human_description:
+            en_US: Whether to include table of contents at the beginning of the DOCX
+              file
+            ja_JP: Whether to include table of contents at the beginning of the DOCX
+              file
+            pt_BR: Whether to include table of contents at the beginning of the DOCX
+              file
+            zh_Hans: 是否在包含目录在DOCX文件开头
+          input_schema: null
+          label:
+            en_US: Include Table of Contents
+            ja_JP: Include Table of Contents
+            pt_BR: Include Table of Contents
+            zh_Hans: 包含目录
+          llm_description: ''
+          max: null
+          min: null
+          multiple: false
+          name: enable_toc
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          docx_template_file: ''
+          enable_toc: ''
+          md_text: ''
+          output_filename: ''
+        plugin_id: bowenliang123/md_exporter
+        plugin_unique_identifier: bowenliang123/md_exporter:4.0.0@eff5440a18b9fa10d7fe3f0a1b5a2ef1bf78ab8a19dd92e273daf7a346553106
+        provider_icon: https://cloud.dify.ai/console/api/workspaces/current/plugin/icon?tenant_id=a885646c-0b84-4fc9-b32b-318b8b0dcfb9&filename=94713265c9473c3bd2bc8b0dd0794ad40955b7431610243bbd00ab02dae281cf.png
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_show_name: Markdown Exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown ⮕ DOCX
+        tool_configurations:
+          enable_toc:
+            type: constant
+            value: 'false'
+        tool_description: Generate DOCX file from Markdown text
+        tool_label: Markdown ⮕ DOCX
+        tool_name: md_to_docx
+        tool_node_version: '2'
+        tool_parameters:
+          docx_template_file:
+            type: constant
+            value: null
+          md_text:
+            type: mixed
+            value: '{{#1791941598892.output#}}'
+          output_filename:
+            type: mixed
+            value: 문서 정리 카드
+        type: tool
+      height: 87
+      id: '1791944794528'
+      position:
+        x: 2067
+        y: 0
+      positionAbsolute:
+        x: 2067
+        y: 0
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 0
+    viewport:
+      x: 39
+      y: 589
+      zoom: 0.7
+  rag_pipeline_variables: []

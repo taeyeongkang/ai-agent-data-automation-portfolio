@@ -1,0 +1,115 @@
+app:
+  description: 사내 규정 3종(취업규칙·경비지급규정·재택근무 지침)을 근거로 답하고 출처를 보여 주는 봇. 4일차까지 유지
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: chat
+  name: 규정 Q&A 봇
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+kind: app
+model_config:
+  agent_mode:
+    enabled: false
+    max_iteration: 10
+    strategy: function_call
+    tools: []
+  annotation_reply:
+    enabled: false
+  chat_prompt_config:
+    prompt:
+    - role: system
+      text: ''
+  completion_prompt_config:
+    conversation_histories_role:
+      assistant_prefix: ''
+      user_prefix: ''
+    prompt:
+      text: ''
+  dataset_configs:
+    datasets:
+      datasets:
+      - dataset:
+          enabled: true
+          id: 51f81927-70ab-47ff-891d-943edcdff709
+    reranking_enable: true
+    reranking_mode: reranking_model
+    reranking_model:
+      reranking_model_name: qwen3-rerank
+      reranking_provider_name: langgenius/tongyi/tongyi
+    retrieval_model: multiple
+    score_threshold: 0.5
+    score_threshold_enabled: true
+    top_k: 3
+  dataset_query_variable: ''
+  external_data_tools: []
+  file_upload:
+    allowed_file_extensions:
+    - .JPG
+    - .JPEG
+    - .PNG
+    - .GIF
+    - .WEBP
+    - .SVG
+    - .MP4
+    - .MOV
+    - .MPEG
+    - .WEBM
+    allowed_file_types: []
+    allowed_file_upload_methods:
+    - remote_url
+    - local_file
+    enabled: false
+    image:
+      detail: high
+      enabled: false
+      number_limits: 3
+      transfer_methods:
+      - remote_url
+      - local_file
+    number_limits: 3
+  model:
+    completion_params:
+      stop: []
+    mode: chat
+    name: gpt-4.1-mini
+    provider: langgenius/openai/openai
+  more_like_this:
+    enabled: false
+  opening_statement: ''
+  pre_prompt: '너는 주식회사 나래소프트의 사내 규정 안내 도우미다.
+
+    규칙
+
+    1. 제공된 규정 내용만 근거로 답한다. 규정에 없는 내용은 추측하지 말고 "규정에서 확인할 수 없습니다. 인사팀에 문의해 주세요."라고만
+    답한다.
+
+    2. 일수·금액·기한 같은 숫자는 규정 문구 그대로 쓴다.
+
+    3. 답 끝에 근거를 「문서명 + 조항 번호」로 한 줄 적는다. 조항 번호는 문서에 적힌 그대로(예: 제7조, 별표 1, 2.1) 쓰고, 규정에서
+    확인할 수 없을 때는 근거를 적지 않는다.
+
+    4. 존댓말로 3문장 이내로 답한다.
+
+    5. 질문한 지역·대상이 규정에 따로 열거되어 있지 않으면 일반 기준을 적용해 답하고, 일반 기준을 적용했다고 밝힌다.'
+  prompt_type: simple
+  retriever_resource:
+    enabled: true
+  sensitive_word_avoidance:
+    enabled: false
+  speech_to_text:
+    enabled: false
+  suggested_questions: []
+  suggested_questions_after_answer:
+    enabled: false
+  text_to_speech:
+    enabled: false
+    language: ''
+    voice: ''
+  user_input_form: []
+version: 0.7.0

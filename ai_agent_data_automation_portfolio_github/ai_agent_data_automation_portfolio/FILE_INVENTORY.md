@@ -1,0 +1,57 @@
+# File inventory
+
+- `.env.example` — 46 bytes — sha256 `d01cb36191b6…`
+- `.gitignore` — 382 bytes — sha256 `9b53bda399ef…`
+- `01_constitution_rag/README.md` — 655 bytes — sha256 `0610635e56a8…`
+- `01_constitution_rag/app.py` — 2,286 bytes — sha256 `13a0edfac738…`
+- `01_constitution_rag/conversational_rag.py` — 4,941 bytes — sha256 `deb8edf7f091…`
+- `01_constitution_rag/create_db.py` — 596 bytes — sha256 `b8fe4ae39f79…`
+- `01_constitution_rag/data/대한민국헌법.txt` — 45,990 bytes — sha256 `10e9aa0b2ef1…`
+- `02_langgraph_agent/README.md` — 430 bytes — sha256 `d5f1e7e64ec2…`
+- `02_langgraph_agent/langgraph_tool_agent_clean.ipynb` — 18,512 bytes — sha256 `b1cde53f11b9…`
+- `03_make_zapier_automation/README.md` — 1,285 bytes — sha256 `93140168769b…`
+- `03_make_zapier_automation/make_blueprint_sanitized.json` — 63,536 bytes — sha256 `2a784053745b…`
+- `03_make_zapier_automation/python_preprocess_and_email_clean.ipynb` — 4,789 bytes — sha256 `1881be5ac37b…`
+- `04_dify_workflows/README.md` — 1,636 bytes — sha256 `2efb4d27b7d7…`
+- `04_dify_workflows/workflows/01_JSON 다시 쓰기.yml` — 10,117 bytes — sha256 `feb28d25dfac…`
+- `04_dify_workflows/workflows/02_규정 Q&A 봇.yml` — 3,143 bytes — sha256 `50db93237590…`
+- `04_dify_workflows/workflows/03_규정 Q&A 봇.yml` — 2,623 bytes — sha256 `f6d05c0737ea…`
+- `04_dify_workflows/workflows/04_규정 Q&A 봇(copy).yml` — 10,376 bytes — sha256 `5e74f2ddeac4…`
+- `04_dify_workflows/workflows/05_규정 안내 챗봇.yml` — 3,361 bytes — sha256 `c6c3e0f20bdb…`
+- `04_dify_workflows/workflows/06_근로기준법 Q&A.yml` — 2,584 bytes — sha256 `bc8094307e5d…`
+- `04_dify_workflows/workflows/07_근로기준법 Q&A.yml` — 2,327 bytes — sha256 `5a9a6ef166dc…`
+- `04_dify_workflows/workflows/08_문서 일괄 정리.yml` — 17,610 bytes — sha256 `cb9efbd67514…`
+- `04_dify_workflows/workflows/09_문서 정리 워크플로우.yml` — 20,822 bytes — sha256 `7c5915010331…`
+- `04_dify_workflows/workflows/10_문서→그래프 추출.yml` — 8,902 bytes — sha256 `fe8b866cfccf…`
+- `04_dify_workflows/workflows/11_문서→그래프 추출.yml` — 8,946 bytes — sha256 `879ce6962e9f…`
+- `04_dify_workflows/workflows/12_문의 일괄 처리.yml` — 21,926 bytes — sha256 `131b9191d272…`
+- `04_dify_workflows/workflows/13_사내 상담 채팅 플로우.yml` — 20,672 bytes — sha256 `62a0dc4adf40…`
+- `04_dify_workflows/workflows/14_업무 도우미 에이전트.yml` — 3,655 bytes — sha256 `49bca5bbe376…`
+- `04_dify_workflows/workflows/15_영문 이메일 초안.yml` — 2,418 bytes — sha256 `add866ee6f73…`
+- `04_dify_workflows/workflows/16_웹 검색 기반 챗봇.yml` — 64,380 bytes — sha256 `4d8f943f2934…`
+- `04_dify_workflows/workflows/17_주간 브리핑.yml` — 17,109 bytes — sha256 `5426aaf0666a…`
+- `04_dify_workflows/workflows/18_출장 준비 에이전트.yml` — 5,896 bytes — sha256 `2f15fd3b6ab5…`
+- `04_dify_workflows/workflows/19_출장 체크리스트 워크플로우.yml` — 10,970 bytes — sha256 `56e203672b96…`
+- `04_dify_workflows/workflows/20_회의록 자동 요약.yml` — 9,155 bytes — sha256 `8f441fa0629b…`
+- `04_dify_workflows/workflows/21_회의록 정리.yml` — 2,719 bytes — sha256 `ad4a96197f06…`
+- `05_tableau/README.md` — 464 bytes — sha256 `9859a01db146…`
+- `05_tableau/Tableau Day 1.twb` — 380,498 bytes — sha256 `627858f9664b…`
+- `05_tableau/Tableau Day 2-2.twb` — 228,480 bytes — sha256 `c1e8a5af7d14…`
+- `05_tableau/Tableau Day 2.twb` — 275,472 bytes — sha256 `7a502336ee3d…`
+- `05_tableau/Tableau Final.twb` — 159,617 bytes — sha256 `4b6702ef9430…`
+- `06_sql/README.md` — 648 bytes — sha256 `012ac7c65b2c…`
+- `06_sql/script_01.sql` — 581 bytes — sha256 `1c004fd62507…`
+- `06_sql/script_02.sql` — 351 bytes — sha256 `9fa1dddaa740…`
+- `06_sql/script_03.sql` — 472 bytes — sha256 `8aae0f39b58e…`
+- `06_sql/script_04.sql` — 505 bytes — sha256 `2b983d1ff638…`
+- `06_sql/script_05.sql` — 655 bytes — sha256 `9dfc1cdb6029…`
+- `06_sql/script_06.sql` — 259 bytes — sha256 `0207d538a4d1…`
+- `06_sql/script_07.sql` — 1,357 bytes — sha256 `d44e429ab047…`
+- `07_python_applications/README.md` — 614 bytes — sha256 `d4449293aadd…`
+- `07_python_applications/dueum_rule_practice_clean.ipynb` — 72,750 bytes — sha256 `10096ef96ed8…`
+- `07_python_applications/mastermind_practice_clean.ipynb` — 65,356 bytes — sha256 `845434984211…`
+- `08_final_project/README.md` — 823 bytes — sha256 `c2b2e93a39b9…`
+- `PUBLIC_RELEASE_NOTES.md` — 744 bytes — sha256 `23c500a3d866…`
+- `README.md` — 2,557 bytes — sha256 `df0038f17497…`
+- `SECURITY.md` — 437 bytes — sha256 `042ad6b98bc3…`
+- `requirements.txt` — 148 bytes — sha256 `8417cf7c9337…`

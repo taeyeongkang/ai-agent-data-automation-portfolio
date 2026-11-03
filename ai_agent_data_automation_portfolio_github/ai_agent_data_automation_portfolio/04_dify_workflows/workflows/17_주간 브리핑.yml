@@ -1,0 +1,595 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: workflow
+  name: 주간 브리핑
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: bowenliang123/md_exporter:4.0.0@eff5440a18b9fa10d7fe3f0a1b5a2ef1bf78ab8a19dd92e273daf7a346553106
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:1.0.7@f36c3761167b3af0bfb4975b728fe3cd126342d076e1ec5359e6d4f92557d3d4
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 50
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        knowledge_file_size_limit: 15
+        single_chunk_attachment_limit: 10
+        skill_file_size_limit: 50
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: iteration
+      id: 1792050024874-source-1792050105654-target
+      source: '1792050024874'
+      sourceHandle: source
+      target: '1792050105654'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792050105654'
+        sourceType: iteration-start
+        targetType: document-extractor
+      id: 1792050105654start-source-1792050133159-target
+      source: 1792050105654start
+      sourceHandle: source
+      target: '1792050133159'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792050105654'
+        sourceType: document-extractor
+        targetType: parameter-extractor
+      id: 1792050133159-source-1792050152656-target
+      source: '1792050133159'
+      sourceHandle: source
+      target: '1792050152656'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792050105654'
+        sourceType: parameter-extractor
+        targetType: template-transform
+      id: 1792050152656-source-1792050274313-target
+      source: '1792050152656'
+      sourceHandle: source
+      target: '1792050274313'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792050105654'
+        sourceType: template-transform
+        targetType: template-transform
+      id: 1792050274313-source-1792050563720-target
+      source: '1792050274313'
+      sourceHandle: source
+      target: '1792050563720'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792050105654'
+        sourceType: template-transform
+        targetType: tool
+      id: 1792050563720-source-1792051567964-target
+      source: '1792050563720'
+      sourceHandle: source
+      target: '1792051567964'
+      targetHandle: target
+      type: custom
+      zIndex: 1001
+    nodes:
+    - data:
+        selected: false
+        title: 파일 목록
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          default: ''
+          hide: false
+          hint: ''
+          label: docs
+          max_length: 5
+          options: []
+          placeholder: ''
+          required: true
+          type: file-list
+          variable: docs
+      height: 108
+      id: '1792050024874'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        error_handle_mode: terminated
+        flatten_output: true
+        height: 191
+        is_parallel: false
+        iterator_input_type: array[file]
+        iterator_selector:
+        - '1792050024874'
+        - docs
+        output_selector: []
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1792050105654start
+        title: 보도자료별
+        type: iteration
+        width: 1589
+      height: 191
+      id: '1792050105654'
+      position:
+        x: 382
+        y: 282
+      positionAbsolute:
+        x: 382
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 1589
+      zIndex: 0
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1792050105654start
+      parentId: '1792050105654'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 406
+        y: 350
+      selectable: false
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_array_file: false
+        iteration_id: '1792050105654'
+        selected: false
+        title: Doc 추출기
+        type: document-extractor
+        variable_selector:
+        - '1792050105654'
+        - item
+      height: 103
+      id: '1792050133159'
+      parentId: '1792050105654'
+      position:
+        x: 128
+        y: 68
+      positionAbsolute:
+        x: 510
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        instruction: '맨 위 「출처:」 줄은 값을 뽑지 않는다.
+
+          org - 「보도자료 · 」로 시작하는 줄을 본다. 괄호가 있으면 괄호 안의 기관 이름만, 없으면 그 줄의 기관 이름을 쓴다.
+
+          start_date - 보도시점 이후에 처음 시행되는 새 제도 · 서비스의 날짜만 쓴다. 보도시점보다 앞선 날짜, 행사 날, 감독
+          · 신고 기간이 시작하는 날은 시행일이 아니다. 없으면 「없음」.
+
+          summary - 핵심 3줄. 줄마다 「- 」로 시작하고 줄을 바꾼다.'
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792050105654'
+        model:
+          completion_params:
+            temperature: 0
+          mode: chat
+          name: gpt-4.1-mini
+          provider: langgenius/openai/openai
+        parameters:
+        - description: 보도자료 제목 한 줄
+          name: title
+          required: false
+          type: string
+        - description: 「보도시점」 줄의 첫 날짜. YYYY-MM-DD
+          name: date
+          required: false
+          type: string
+        - description: 보도자료를 낸 기관 이름 하나
+          name: org
+          required: false
+          type: string
+        - description: 본문에서 뽑은 핵심 3줄
+          name: summary
+          required: false
+          type: string
+        - description: 새 제도 · 서비스가 시행되는 날. YYYY-MM-DD 또는 「없음」
+          name: start_date
+          required: false
+          type: string
+        query:
+        - '1792050133159'
+        - text
+        reasoning_mode: function_call
+        selected: false
+        title: 항목 추출
+        type: parameter-extractor
+        vision:
+          enabled: false
+      height: 87
+      id: '1792050152656'
+      parentId: '1792050105654'
+      position:
+        x: 429
+        y: 68
+      positionAbsolute:
+        x: 811
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792050105654'
+        selected: false
+        template: "## {{ title }}\r\n발표일 {{ date }} · 기관 {{ org }} · 시행일 {{ start_date\
+          \ }}\r\n\r\n{{ summary }}"
+        title: 카드
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1792050152656'
+          - title
+          value_type: string
+          variable: title
+        - value_selector:
+          - '1792050152656'
+          - date
+          value_type: string
+          variable: date
+        - value_selector:
+          - '1792050152656'
+          - org
+          value_type: string
+          variable: org
+        - value_selector:
+          - '1792050152656'
+          - summary
+          value_type: string
+          variable: summary
+        - value_selector:
+          - '1792050152656'
+          - summary
+          value_type: string
+          variable: start_date
+      height: 51
+      id: '1792050274313'
+      parentId: '1792050105654'
+      position:
+        x: 730
+        y: 68
+      positionAbsolute:
+        x: 1112
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1792050105654'
+        selected: true
+        template: "# 주간 노동정책 브리핑 ({{ cards | length }}건)\r\n\r\n{{ cards | join(\"\
+          \\n\\n\") }}"
+        title: 브리핑 묶기
+        type: template-transform
+        variables:
+        - value_selector: ''
+          variable: cards
+      height: 51
+      id: '1792050563720'
+      parentId: '1792050105654'
+      position:
+        x: 1031
+        y: 68
+      positionAbsolute:
+        x: 1413
+        y: 350
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1792050105654'
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          input_schema: null
+          label:
+            en_US: Markdown text
+            ja_JP: Markdown text
+            pt_BR: Markdown text
+            zh_Hans: Markdown格式文本
+          llm_description: ''
+          max: null
+          min: null
+          multiple: false
+          name: md_text
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional docx template file for styling。Use "Home"-"Styles Pane"
+              in Microsoft Word to edit styles of the docx file.
+            ja_JP: Optional docx template file for styling。Use "Home"-"Styles Pane"
+              in Microsoft Word to edit styles of the docx file.
+            pt_BR: Optional docx template file for styling。Use "Home"-"Styles Pane"
+              in Microsoft Word to edit styles of the docx file.
+            zh_Hans: 可选的docx模板文件，用于样式控制。使用Microsoft Word中“开始”-“样式窗格”对docx文件的样式进行编辑。
+          input_schema: null
+          label:
+            en_US: DOCX Template File
+            ja_JP: DOCX Template File
+            pt_BR: DOCX Template File
+            zh_Hans: DOCX 模板文件
+          llm_description: An optional .pptx file that serves as a template for the
+            generated presentation
+          max: null
+          min: null
+          multiple: false
+          name: docx_template_file
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: file
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Optional custom output file name, and the filename suffix is not
+              required.
+            ja_JP: Optional custom output file name, and the filename suffix is not
+              required.
+            pt_BR: Optional custom output file name, and the filename suffix is not
+              required.
+            zh_Hans: 可选的自定义输出文件名，后缀名无需指定
+          input_schema: null
+          label:
+            en_US: Output Filename
+            ja_JP: Output Filename
+            pt_BR: Output Filename
+            zh_Hans: 输出文件名
+          llm_description: ''
+          max: null
+          min: null
+          multiple: false
+          name: output_filename
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 'false'
+          form: form
+          human_description:
+            en_US: Whether to include table of contents at the beginning of the DOCX
+              file
+            ja_JP: Whether to include table of contents at the beginning of the DOCX
+              file
+            pt_BR: Whether to include table of contents at the beginning of the DOCX
+              file
+            zh_Hans: 是否在包含目录在DOCX文件开头
+          input_schema: null
+          label:
+            en_US: Include Table of Contents
+            ja_JP: Include Table of Contents
+            pt_BR: Include Table of Contents
+            zh_Hans: 包含目录
+          llm_description: ''
+          max: null
+          min: null
+          multiple: false
+          name: enable_toc
+          options:
+          - icon: ''
+            label:
+              en_US: 'Yes'
+              ja_JP: 'Yes'
+              pt_BR: 'Yes'
+              zh_Hans: 是
+            value: 'true'
+          - icon: ''
+            label:
+              en_US: 'No'
+              ja_JP: 'No'
+              pt_BR: 'No'
+              zh_Hans: 否
+            value: 'false'
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          docx_template_file: ''
+          enable_toc: ''
+          md_text: ''
+          output_filename: ''
+        plugin_id: bowenliang123/md_exporter
+        plugin_unique_identifier: bowenliang123/md_exporter:4.0.0@eff5440a18b9fa10d7fe3f0a1b5a2ef1bf78ab8a19dd92e273daf7a346553106
+        provider_icon: https://cloud.dify.ai/console/api/workspaces/current/plugin/icon?tenant_id=a885646c-0b84-4fc9-b32b-318b8b0dcfb9&filename=94713265c9473c3bd2bc8b0dd0794ad40955b7431610243bbd00ab02dae281cf.png
+        provider_id: bowenliang123/md_exporter/md_exporter
+        provider_name: bowenliang123/md_exporter/md_exporter
+        provider_show_name: Markdown Exporter
+        provider_type: builtin
+        selected: false
+        title: Markdown ⮕ DOCX
+        tool_configurations:
+          enable_toc:
+            type: constant
+            value: 'false'
+        tool_description: Generate DOCX file from Markdown text
+        tool_label: Markdown ⮕ DOCX
+        tool_name: md_to_docx
+        tool_node_version: '2'
+        tool_parameters:
+          docx_template_file:
+            type: constant
+            value: null
+          md_text:
+            type: mixed
+            value: '{{#1792050563720.output#}}'
+          output_filename:
+            type: mixed
+            value: 주간브리핑
+        type: tool
+      height: 87
+      id: '1792051567964'
+      parentId: '1792050105654'
+      position:
+        x: 1332
+        y: 68
+      positionAbsolute:
+        x: 1714
+        y: 350
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1001
+    viewport:
+      x: -365
+      y: 350.5
+      zoom: 1
+  rag_pipeline_variables: []
